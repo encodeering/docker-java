@@ -16,6 +16,9 @@ docker tag -f "$REPOSITORY/buildpack-$ARCH:$PACKTAG" "buildpack-deps:$PACKTAG"
 
 patch -p1 --no-backup-if-mismatch --directory=$PROJECT < .patch/$VERSION/Dockerfile.patch
 
-docker build -t "$TAG:$TAGSPECIFIER" --build-arg ARCH="$ARCH" "$PROJECT/$VERSION"
+docker build -t "$TAG:$TAGSPECIFIER" \
+             --build-arg ARCH="$ARCH" \
+             --build-arg JAVA_DEBIAN_VERSION="$VERSIONPIN" \
+             "$PROJECT/$VERSION"
 
 docker run --rm "$TAG:$TAGSPECIFIER" java -version

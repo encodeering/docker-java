@@ -1,8 +1,8 @@
 diff --git a/8-jre/Dockerfile b/8-jre/Dockerfile
-index 70e3a0e..a653ff1 100644
+index 70e3a0e..aea2074 100644
 --- a/8-jre/Dockerfile
 +++ b/8-jre/Dockerfile
-@@ -32,7 +32,8 @@ RUN { \
+@@ -32,10 +32,11 @@ RUN { \
  	} > /usr/local/bin/docker-java-home \
  	&& chmod +x /usr/local/bin/docker-java-home
  
@@ -10,5 +10,10 @@ index 70e3a0e..a653ff1 100644
 +ARG ARCH
 +ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-${ARCH}/jre
  
- ENV JAVA_VERSION 8u72
- ENV JAVA_DEBIAN_VERSION 8u72-b15-1~bpo8+1
+-ENV JAVA_VERSION 8u72
+-ENV JAVA_DEBIAN_VERSION 8u72-b15-1~bpo8+1
++ARG JAVA_VERSION=8u72
++ARG JAVA_DEBIAN_VERSION
+ 
+ # see https://bugs.debian.org/775775
+ # and https://github.com/docker-library/java/issues/19#issuecomment-70546872
