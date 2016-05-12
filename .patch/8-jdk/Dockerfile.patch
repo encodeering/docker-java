@@ -1,0 +1,14 @@
+diff --git a/8-jdk/Dockerfile b/8-jdk/Dockerfile
+index 3684142..0dae450 100644
+--- a/8-jdk/Dockerfile
++++ b/8-jdk/Dockerfile
+@@ -32,7 +32,8 @@ RUN { \
+ 	} > /usr/local/bin/docker-java-home \
+ 	&& chmod +x /usr/local/bin/docker-java-home
+ 
+-ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
++ARG ARCH
++ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-${ARCH}
+ 
+ ENV JAVA_VERSION 8u72
+ ENV JAVA_DEBIAN_VERSION 8u72-b15-1~bpo8+1

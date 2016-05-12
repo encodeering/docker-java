@@ -14,4 +14,6 @@ esac
 docker pull   "$REPOSITORY/buildpack-$ARCH:$PACKTAG"
 docker tag -f "$REPOSITORY/buildpack-$ARCH:$PACKTAG" "buildpack-deps:$PACKTAG"
 
-docker build -t "$TAG:$TAGSPECIFIER" "$PROJECT/$VERSION"
+patch -p1 --no-backup-if-mismatch --directory=$PROJECT < .patch/$VERSION/Dockerfile.patch
+
+docker build -t "$TAG:$TAGSPECIFIER" --build-arg ARCH="$ARCH" "$PROJECT/$VERSION"

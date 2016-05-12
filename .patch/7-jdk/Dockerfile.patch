@@ -1,0 +1,14 @@
+diff --git a/7-jdk/Dockerfile b/7-jdk/Dockerfile
+index 5f83530..7e75897 100644
+--- a/7-jdk/Dockerfile
++++ b/7-jdk/Dockerfile
+@@ -30,7 +30,8 @@ RUN { \
+ 	} > /usr/local/bin/docker-java-home \
+ 	&& chmod +x /usr/local/bin/docker-java-home
+ 
+-ENV JAVA_HOME /usr/lib/jvm/java-7-openjdk-amd64
++ARG ARCH
++ENV JAVA_HOME /usr/lib/jvm/java-7-openjdk-${ARCH}
+ 
+ ENV JAVA_VERSION 7u101
+ ENV JAVA_DEBIAN_VERSION 7u101-2.6.6-1~deb8u1
