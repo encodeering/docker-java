@@ -3,7 +3,7 @@
 set -ev
 
 TAG="$REPOSITORY/$PROJECT-$ARCH"
-TAGSPECIFIER="$VERSION"
+TAGSPECIFIER="$VERSION${CUSTOM:+-$CUSTOM}"
 
 case "$VERSION" in
     *-jre) PACKTAG=jessie-curl ;;
