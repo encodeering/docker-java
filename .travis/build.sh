@@ -3,7 +3,7 @@
 set -ev
 
 TAG="$REPOSITORY/$PROJECT-$ARCH"
-TAGSPECIFIER="$VERSION"
+TAGSPECIFIER="$VERSION${CUSTOM:+-$CUSTOM}"
 
 case "$VERSION" in
     *-jre) PACKTAG=jessie-curl ;;
@@ -14,11 +14,30 @@ esac
 docker pull   "$REPOSITORY/buildpack-$ARCH:$PACKTAG"
 docker tag -f "$REPOSITORY/buildpack-$ARCH:$PACKTAG" "buildpack-deps:$PACKTAG"
 
-patch -p1 --no-backup-if-mismatch --directory=$PROJECT < .patch/$VERSION/Dockerfile.patch
+case "$CUSTOM" in
+    openjdk )
+        patch -p1 --no-backup-if-mismatch --directory=$PROJECT < .patch/$VERSION/Dockerfile.patch
 
-docker build -t "$TAG:$TAGSPECIFIER" \
-             --build-arg ARCH="$ARCH" \
-             --build-arg JAVA_DEBIAN_VERSION="$VERSIONPIN" \
-             "$PROJECT/$VERSION"
+        docker build -t "$TAG:$TAGSPECIFIER" \
+                     --build-arg ARCH="$ARCH" \
+                     --build-arg JAVA_DEBIAN_VERSION="$VERSIONPIN" \
+                     "$PROJECT/$VERSION"
 
-docker run --rm "$TAG:$TAGSPECIFIER" java -version
+        docker run --rm "$TAG:$TAGSPECIFIER" java -version
+        ;;
+    * )
+        sed -i "/FROM/ s/:.*$/:$PACKTAG/g" contrib/java/Dockerfile
+
+        docker build -t "$TAG:$TAGSPECIFIER" \
+                     --build-arg VERSION="$VERSION"       \
+                     --build-arg VERSIONSHA="$VERSIONSHA" \
+                     --build-arg DOWNLOAD="$DOWNLOAD"     \
+                     --build-arg LEGAL="$LEGAL"           \
+                     "contrib/java"
+
+        docker run --rm -e eula-java=accept "$TAG:$TAGSPECIFIER" java -version && true
+        docker run --rm -e eula-java=       "$TAG:$TAGSPECIFIER" java -version || true
+        ;;
+esac
+
+
