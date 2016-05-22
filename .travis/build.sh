@@ -35,8 +35,8 @@ case "$CUSTOM" in
                      --build-arg LEGAL="$LEGAL"           \
                      "contrib/java"
 
-        docker run --rm -e eula-java=accept "$TAG:$TAGSPECIFIER" java -version && true
-        docker run --rm -e eula-java=       "$TAG:$TAGSPECIFIER" java -version || true
+        if docker run --rm -e eula-java=accept "$TAG:$TAGSPECIFIER" java -version; then             true; fi
+        if docker run --rm -e eula-java=       "$TAG:$TAGSPECIFIER" java -version; then false; else true; fi
         ;;
 esac
 
