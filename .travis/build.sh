@@ -11,11 +11,11 @@ case "$VERSION" in
     *    ) exit 1
 esac
 
+docker pull   "$REPOSITORY/buildpack-$ARCH:$PACKTAG"
+docker tag -f "$REPOSITORY/buildpack-$ARCH:$PACKTAG" "buildpack-deps:$PACKTAG"
+
 case "$CUSTOM" in
     openjdk )
-        docker pull   "$REPOSITORY/buildpack-$ARCH:$PACKTAG"
-        docker tag -f "$REPOSITORY/buildpack-$ARCH:$PACKTAG" "buildpack-deps:$PACKTAG"
-
         patch -p1 --no-backup-if-mismatch --directory=$PROJECT < .patch/$VERSION/Dockerfile.patch
 
         docker build -t "$TAG:$TAGSPECIFIER" \
@@ -24,6 +24,19 @@ case "$CUSTOM" in
                      "$PROJECT/$VERSION"
 
         docker run --rm "$TAG:$TAGSPECIFIER" java -version
+        ;;
+    * )
+        sed -i "/FROM/ s/:.*$/:$PACKTAG/g" contrib/java/Dockerfile
+
+        docker build -t "$TAG:$TAGSPECIFIER" \
+                     --build-arg VERSION="$VERSION"       \
+                     --build-arg VERSIONSHA="$VERSIONSHA" \
+                     --build-arg DOWNLOAD="$DOWNLOAD"     \
+                     --build-arg LEGAL="$LEGAL"           \
+                     "contrib/java"
+
+        docker run --rm -e eula-java=accept "$TAG:$TAGSPECIFIER" java -version && true
+        docker run --rm -e eula-java=       "$TAG:$TAGSPECIFIER" java -version || true
         ;;
 esac
 
