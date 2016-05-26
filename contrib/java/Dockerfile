@@ -18,7 +18,8 @@ RUN        mkdir -p "/opt/java/$VERSION" \
  &&        echo "$VERSIONSHA `find /opt/java/*.tar.gz`" | sha256sum -c -                           \
  &&        tar -xzf /opt/java/*.tar.gz -C "/opt/java/$VERSION" --strip-components=1                \
  &&        rm       /opt/java/*.tar.gz                                                             \
- &&        test -d  /opt/java/$VERSION/bin
+ &&        test -d  /opt/java/$VERSION/bin                                                         \
+ &&        update-alternatives --install /usr/bin/java java /opt/java/$VERSION/bin/java 1
 
 RUN {                                        \
            echo "#!/bin/bash";               \
