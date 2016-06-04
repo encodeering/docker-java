@@ -15,8 +15,8 @@ env:
   matrix:
     - ARCH=armhf VERSION=7-jre VERSIONPIN=7u95-2.6.4-1~deb8u1  CUSTOM=openjdk
     - ARCH=armhf VERSION=7-jdk VERSIONPIN=7u95-2.6.4-1~deb8u1  CUSTOM=openjdk
-    - ARCH=armhf VERSION=8-jre VERSIONPIN=8u72-b15-1~bpo8+1    CUSTOM=openjdk
-    - ARCH=armhf VERSION=8-jdk VERSIONPIN=8u72-b15-1~bpo8+1    CUSTOM=openjdk
+    - ARCH=armhf VERSION=8-jre VERSIONPIN=8u91-b14-1~bpo8+1    CUSTOM=openjdk
+    - ARCH=armhf VERSION=8-jdk VERSIONPIN=8u91-b14-1~bpo8+1    CUSTOM=openjdk
     - ARCH=armhf VERSION=8-jdk VERSIONPIN=8u91-b14             CUSTOM=oracle   VERSIONSHA=79dda1dec6ccd7130b5204e75d1a8300e5b02c18f70888697f51764a777e5339
       DOWNLOAD=http://download.oracle.com/otn-pub/java/jdk/${VERSIONPIN}/jdk-${VERSIONPIN%%-*}-linux-arm32-vfp-hflt.tar.gz
       LEGAL=http://www.oracle.com/technetwork/java/javase/terms/license/index.html
