@@ -12,35 +12,40 @@ env:
     - secure: "VucyJCVl2hzVRBr0TDnrbslhTHOdgGYJKCuTBfyaSXKYgrW7t/Y54+DHu/sAh6JsoNxd4PIpbKvt4puOrnDMkg+RrVu2QUxktc/wJZULzSIZZSrTN6wQyoHLynIfPhWU7PNsFMNL+eJ5CR7Qz+KLFCNAEbyNp3D4amMwNOUu+zA2X/vpmElOE5je8v5BOwflqnJUHFVG8DzFadaQIxjjdn+VYRIHo37Dhs0G+DgwN0fufP3cf6d0ZSGKN5TAIUxJJ2ev5mfxyMYhlRNnO9lzLZ1RsE9HPzTtp7dm4iwW5gPRgBtHkYhpXdToD9NBUXW76eEPyfwB3Ug/EQmAkdKgOqKfoJehFMZlC1Duz1IU3ICHslLObPHT7U/PPMu6Tfx/lOjY0N1xUtdv4v+O+6VuMFojMyYsEqoSuA52/HP7ZnUOmo9LWuA7gUoOKOnQWUO+NYOh8F9ghBWxpZOAWxrNwzO6MVV6Y6NLKdLeG+UnJIfo/H/+s9UkcXqPhIINaitKD465rJ5t9h4j+GXxDQdXnz+EuYtmB1BYhRYw9qX51eJbdw/TE02OTwQot4th3KqdXyxP9c2837Rlkkc4gjWHRwTdAN68VsXg36E4gQJ1hITPBCvwbf1n8FGDlsSHW0SRADF52lFJeBCmbohgEveSL1sfx2nS9Ru79yD4+2Thi+U="
     - PROJECT="java"
     - REPOSITORY="encodeering"
+    - BRANCH="$TRAVIS_BRANCH"
+    - COMMIT="238cc35696423794b1951fc63d4cc9ffb8ca9685"
   matrix:
     - ARCH=armhf VERSION=7-jre VERSIONPIN=7u95-2.6.4-1~deb8u1  CUSTOM=openjdk
     - ARCH=armhf VERSION=7-jdk VERSIONPIN=7u95-2.6.4-1~deb8u1  CUSTOM=openjdk
     - ARCH=armhf VERSION=8-jre VERSIONPIN=8u91-b14-1~bpo8+1    CUSTOM=openjdk
     - ARCH=armhf VERSION=8-jdk VERSIONPIN=8u91-b14-1~bpo8+1    CUSTOM=openjdk
-    - ARCH=armhf VERSION=8-jdk VERSIONPIN=8u91-b14             CUSTOM=oracle   VERSIONSHA=79dda1dec6ccd7130b5204e75d1a8300e5b02c18f70888697f51764a777e5339
-      DOWNLOAD=http://download.oracle.com/otn-pub/java/jdk/${VERSIONPIN}/jdk-${VERSIONPIN%%-*}-linux-arm32-vfp-hflt.tar.gz
+    - ARCH=armhf VERSION=8-jdk CUSTOM=oracle   VERSIONSHA=2cca3c6ffcc016ae531802202562ef20630500e134838017a6e91daac2dbb339
+      DOWNLOAD=http://download.oracle.com/otn-pub/java/jdk/8u151-b12/e758a0de34e24606bca991d704f6dcbf/jdk-8u151-linux-arm32-vfp-hflt.tar.gz
       LEGAL=http://www.oracle.com/technetwork/java/javase/terms/license/index.html
 
     - ARCH=amd64 VERSION=7-jre VERSIONPIN=7u101-2.6.6-1~deb8u1 CUSTOM=openjdk
     - ARCH=amd64 VERSION=7-jdk VERSIONPIN=7u101-2.6.6-1~deb8u1 CUSTOM=openjdk
     - ARCH=amd64 VERSION=8-jre VERSIONPIN=8u91-b14-1~bpo8+1    CUSTOM=openjdk
     - ARCH=amd64 VERSION=8-jdk VERSIONPIN=8u91-b14-1~bpo8+1    CUSTOM=openjdk
-    - ARCH=amd64 VERSION=8-jdk VERSIONPIN=8u91-b14             CUSTOM=oracle   VERSIONSHA=6f9b516addfc22907787896517e400a62f35e0de4a7b4d864b26b61dbe1b7552
-      DOWNLOAD=http://download.oracle.com/otn-pub/java/jdk/${VERSIONPIN}/jdk-${VERSIONPIN%%-*}-linux-x64.tar.gz
+    - ARCH=amd64 VERSION=8-jdk CUSTOM=oracle   VERSIONSHA=c78200ce409367b296ec39be4427f020e2c585470c4eed01021feada576f027f
+      DOWNLOAD=http://download.oracle.com/otn-pub/java/jdk/8u151-b12/e758a0de34e24606bca991d704f6dcbf/jdk-8u151-linux-x64.tar.gz
       LEGAL=http://www.oracle.com/technetwork/java/javase/terms/license/index.html
 
+install:
+- bash <(curl https://raw.githubusercontent.com/encodeering/docker-ci/master/install.sh) 0.1.4
+
 before_script:
-- sudo -E sh .travis/prepare.sh
-- git clone --depth 1 https://github.com/docker-library/openjdk.git "$PROJECT"
+- sudo -E bash ./module.sh "." "./setup.sh" "https://github.com/docker-library/openjdk.git" "modules/$PROJECT" "$COMMIT"
 
 script:
-- sudo -E sh .travis/build.sh
+- sudo -E bash ./module.sh "modules" "./build.sh"
 
 after_script:
 - docker images
 
 deploy:
-  script: sudo -E sh .travis/deploy.sh
+  script: sudo -E bash ./module.sh "." "./release.sh"
   provider: script
+  skip_cleanup: true
   on:
-    branch: master
+    all_branches: true

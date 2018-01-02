@@ -1,0 +1,9 @@
+diff --git a/7-jdk/Dockerfile b/7-jdk/Dockerfile
+index f81e334..29337b5 100644
+--- a/7-jdk/Dockerfile
++++ b/7-jdk/Dockerfile
+@@ -37,2 +37,2 @@ ENV JAVA_HOME /docker-java-home
+-ENV JAVA_VERSION 7u131
+-ENV JAVA_DEBIAN_VERSION 7u131-2.6.9-2~deb8u1
++ENV JAVA_VERSION 7u151
++ENV JAVA_DEBIAN_VERSION 7u151-2.6.11-2~deb8u1
