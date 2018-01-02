@@ -21,7 +21,7 @@ esac
 
 docker-pull "$REPOSITORY/buildpack-$ARCH:$PACKTAG" "buildpack-deps:$PACKTAG"
 
-case "$CUSTOM" in
+case "$VARIANT" in
     openjdk )
         patch -p1 --no-backup-if-mismatch --directory=$PROJECT < patch/$VERSION/Dockerfile.patch
 
