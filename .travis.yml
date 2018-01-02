@@ -13,6 +13,7 @@ env:
     - PROJECT="java"
     - REPOSITORY="encodeering"
     - BRANCH="$TRAVIS_BRANCH"
+    - COMMIT="238cc35696423794b1951fc63d4cc9ffb8ca9685"
   matrix:
     - ARCH=armhf VERSION=7-jre VERSIONPIN=7u95-2.6.4-1~deb8u1  CUSTOM=openjdk
     - ARCH=armhf VERSION=7-jdk VERSIONPIN=7u95-2.6.4-1~deb8u1  CUSTOM=openjdk
@@ -32,7 +33,8 @@ env:
 
 before_script:
 - sudo -E sh .travis/prepare.sh
-- git clone --depth 1 https://github.com/docker-library/openjdk.git "$PROJECT"
+- git clone https://github.com/docker-library/openjdk.git "$PROJECT"
+- (cd "$PROJECT" && git checkout "$COMMIT")
 
 script:
 - sudo -E sh .travis/build.sh
