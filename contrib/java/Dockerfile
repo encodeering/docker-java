@@ -2,7 +2,7 @@
 # from any consumer on the terms and conditions of oracle
 # any derivation is further hold responsible to implement a proper mechanism to obtain the required agreement
 # e.g.: the entrypoint is by docker's definition a good candidate, but it doesn't support inheritance
-FROM       buildpack-deps:dynamic
+FROM       buildpack-deps:jessie-scm
 
 MAINTAINER Michael Clausen <encodeering@gmail.com>
 

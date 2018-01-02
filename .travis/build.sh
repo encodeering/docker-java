@@ -26,8 +26,6 @@ case "$CUSTOM" in
         docker run --rm "$TAG:$TAGSPECIFIER" java -version
         ;;
     oracle )
-        sed -i "/FROM/ s/:.*$/:$PACKTAG/g" contrib/java/Dockerfile
-
         docker build -t "$TAG:$TAGSPECIFIER" \
                      --build-arg VERSION="$VERSION"       \
                      --build-arg VERSIONSHA="$VERSIONSHA" \
