@@ -31,19 +31,20 @@ env:
       DOWNLOAD=http://download.oracle.com/otn-pub/java/jdk/8u151-b12/e758a0de34e24606bca991d704f6dcbf/jdk-8u151-linux-x64.tar.gz
       LEGAL=http://www.oracle.com/technetwork/java/javase/terms/license/index.html
 
+install:
+- bash <(curl https://raw.githubusercontent.com/encodeering/docker-ci/master/install.sh) 0.1.4
+
 before_script:
-- sudo -E sh .travis/prepare.sh
-- git clone https://github.com/docker-library/openjdk.git "$PROJECT"
-- (cd "$PROJECT" && git checkout "$COMMIT")
+- sudo -E bash ./module.sh "." "./setup.sh" "https://github.com/docker-library/openjdk.git" "modules/$PROJECT" "$COMMIT"
 
 script:
-- sudo -E sh .travis/build.sh
+- sudo -E bash ./module.sh "modules" "./build.sh"
 
 after_script:
 - docker images
 
 deploy:
-  script: sudo -E sh .travis/deploy.sh
+  script: sudo -E bash ./module.sh "." "./release.sh"
   provider: script
   skip_cleanup: true
   on:
