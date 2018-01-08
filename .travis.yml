@@ -15,18 +15,18 @@ env:
     - BRANCH="$TRAVIS_BRANCH"
     - COMMIT="238cc35696423794b1951fc63d4cc9ffb8ca9685"
   matrix:
-    - BASE=debian ARCH=armhf VERSION=7-jre VERSIONPIN=7u95-2.6.4-1~deb8u1  VARIANT=openjdk
-    - BASE=debian ARCH=armhf VERSION=7-jdk VERSIONPIN=7u95-2.6.4-1~deb8u1  VARIANT=openjdk
-    - BASE=debian ARCH=armhf VERSION=8-jre VERSIONPIN=8u91-b14-1~bpo8+1    VARIANT=openjdk
-    - BASE=debian ARCH=armhf VERSION=8-jdk VERSIONPIN=8u91-b14-1~bpo8+1    VARIANT=openjdk
+    - BASE=debian ARCH=armhf VERSION=7-jre VARIANT=openjdk
+    - BASE=debian ARCH=armhf VERSION=7-jdk VARIANT=openjdk
+    - BASE=debian ARCH=armhf VERSION=8-jre VARIANT=openjdk
+    - BASE=debian ARCH=armhf VERSION=8-jdk VARIANT=openjdk
     - BASE=debian ARCH=armhf VERSION=8-jdk VARIANT=oracle   VERSIONSHA=2cca3c6ffcc016ae531802202562ef20630500e134838017a6e91daac2dbb339
       DOWNLOAD=http://download.oracle.com/otn-pub/java/jdk/8u151-b12/e758a0de34e24606bca991d704f6dcbf/jdk-8u151-linux-arm32-vfp-hflt.tar.gz
       LEGAL=http://www.oracle.com/technetwork/java/javase/terms/license/index.html
 
-    - BASE=debian ARCH=amd64 VERSION=7-jre VERSIONPIN=7u101-2.6.6-1~deb8u1 VARIANT=openjdk
-    - BASE=debian ARCH=amd64 VERSION=7-jdk VERSIONPIN=7u101-2.6.6-1~deb8u1 VARIANT=openjdk
-    - BASE=debian ARCH=amd64 VERSION=8-jre VERSIONPIN=8u91-b14-1~bpo8+1    VARIANT=openjdk
-    - BASE=debian ARCH=amd64 VERSION=8-jdk VERSIONPIN=8u91-b14-1~bpo8+1    VARIANT=openjdk
+    - BASE=debian ARCH=amd64 VERSION=7-jre VARIANT=openjdk
+    - BASE=debian ARCH=amd64 VERSION=7-jdk VARIANT=openjdk
+    - BASE=debian ARCH=amd64 VERSION=8-jre VARIANT=openjdk
+    - BASE=debian ARCH=amd64 VERSION=8-jdk VARIANT=openjdk
     - BASE=debian ARCH=amd64 VERSION=8-jdk VARIANT=oracle   VERSIONSHA=c78200ce409367b296ec39be4427f020e2c585470c4eed01021feada576f027f
       DOWNLOAD=http://download.oracle.com/otn-pub/java/jdk/8u151-b12/e758a0de34e24606bca991d704f6dcbf/jdk-8u151-linux-x64.tar.gz
       LEGAL=http://www.oracle.com/technetwork/java/javase/terms/license/index.html
