@@ -32,7 +32,7 @@ env:
       LEGAL=http://www.oracle.com/technetwork/java/javase/terms/license/index.html
 
 install:
-- bash <(curl https://raw.githubusercontent.com/encodeering/docker-ci/master/install.sh) 0.1.4
+- bash <(curl https://raw.githubusercontent.com/encodeering/docker-ci/master/install.sh) 0.1.5
 
 before_script:
 - sudo -E bash ./module.sh "." "./setup.sh" "https://github.com/docker-library/openjdk.git" "modules/$PROJECT" "$COMMIT"
