@@ -13,7 +13,6 @@ env:
     - PROJECT="java"
     - REPOSITORY="encodeering"
     - BRANCH="$TRAVIS_BRANCH"
-    - COMMIT="238cc35696423794b1951fc63d4cc9ffb8ca9685"
   matrix:
     - BASE=debian ARCH=armhf VERSION=7-jre VARIANT=openjdk
     - BASE=debian ARCH=armhf VERSION=7-jdk VARIANT=openjdk
@@ -34,10 +33,10 @@ env:
     - BASE=alpine ARCH=amd64 VERSION=8-jdk VARIANT=openjdk
 
 install:
-- bash <(curl https://raw.githubusercontent.com/encodeering/docker-ci/master/install.sh) 0.1.5
+- bash <(curl https://raw.githubusercontent.com/encodeering/docker-ci/master/install.sh) 0.1.6
 
 before_script:
-- sudo -E bash ./module.sh "." "./setup.sh" "https://github.com/docker-library/openjdk.git" "modules/$PROJECT" "$COMMIT"
+- sudo -E bash ./module.sh "." "./setup.sh"
 
 script:
 - sudo -E bash ./module.sh "modules" "./build.sh"
