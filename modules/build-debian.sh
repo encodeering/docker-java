@@ -2,8 +2,8 @@
 
 set -e
 
-import com.encodeering.docker.config
-import com.encodeering.docker.docker
+import com.encodeering.ci.config
+import com.encodeering.ci.docker
 
 case "$VERSION" in
     *-jre) PACKTAG=jessie-curl ;;
@@ -17,11 +17,10 @@ case "$VARIANT" in
     openjdk )
         patch -p1 --no-backup-if-mismatch --directory=$PROJECT < patch/$BASE/$VERSION/Dockerfile.patch
 
-        docker build -t "$DOCKER_IMAGE" "$PROJECT/$VERSION"
+        docker-build "$PROJECT/$VERSION"
         ;;
     oracle )
-        docker build -t "$DOCKER_IMAGE" \
-                     --build-arg VERSION="$VERSION"       \
+        docker-build --build-arg VERSION="$VERSION"       \
                      --build-arg VERSIONSHA="$VERSIONSHA" \
                      --build-arg DOWNLOAD="$DOWNLOAD"     \
                      --build-arg LEGAL="$LEGAL"           \

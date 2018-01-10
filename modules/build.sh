@@ -2,17 +2,20 @@
 
 set -e
 
-import com.encodeering.docker.config
-import com.encodeering.docker.docker
+import com.encodeering.ci.config
+import com.encodeering.ci.docker
 
 ./build-${BASE}.sh
 
 case "$VARIANT" in
     openjdk )
-        docker run --rm "$DOCKER_IMAGE" java -version
+        docker-verify java -version
         ;;
     oracle )
-        if docker run --rm -e eula-java=accept "$DOCKER_IMAGE" java -version; then             true; fi
-        if docker run --rm -e eula-java=       "$DOCKER_IMAGE" java -version; then false; else true; fi
+           docker-verify-config "-e eula-java=accept"
+        if docker-verify java -version; then             true; fi
+
+           docker-verify-config "-e eula-java="
+        if docker-verify java -version; then false; else true; fi
         ;;
 esac
