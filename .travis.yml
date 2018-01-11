@@ -12,7 +12,6 @@ env:
     - secure: "VucyJCVl2hzVRBr0TDnrbslhTHOdgGYJKCuTBfyaSXKYgrW7t/Y54+DHu/sAh6JsoNxd4PIpbKvt4puOrnDMkg+RrVu2QUxktc/wJZULzSIZZSrTN6wQyoHLynIfPhWU7PNsFMNL+eJ5CR7Qz+KLFCNAEbyNp3D4amMwNOUu+zA2X/vpmElOE5je8v5BOwflqnJUHFVG8DzFadaQIxjjdn+VYRIHo37Dhs0G+DgwN0fufP3cf6d0ZSGKN5TAIUxJJ2ev5mfxyMYhlRNnO9lzLZ1RsE9HPzTtp7dm4iwW5gPRgBtHkYhpXdToD9NBUXW76eEPyfwB3Ug/EQmAkdKgOqKfoJehFMZlC1Duz1IU3ICHslLObPHT7U/PPMu6Tfx/lOjY0N1xUtdv4v+O+6VuMFojMyYsEqoSuA52/HP7ZnUOmo9LWuA7gUoOKOnQWUO+NYOh8F9ghBWxpZOAWxrNwzO6MVV6Y6NLKdLeG+UnJIfo/H/+s9UkcXqPhIINaitKD465rJ5t9h4j+GXxDQdXnz+EuYtmB1BYhRYw9qX51eJbdw/TE02OTwQot4th3KqdXyxP9c2837Rlkkc4gjWHRwTdAN68VsXg36E4gQJ1hITPBCvwbf1n8FGDlsSHW0SRADF52lFJeBCmbohgEveSL1sfx2nS9Ru79yD4+2Thi+U="
     - PROJECT="java"
     - REPOSITORY="encodeering"
-    - BRANCH="$TRAVIS_BRANCH"
   matrix:
     - BASE=debian ARCH=armhf VERSION=7-jre VARIANT=openjdk
     - BASE=debian ARCH=armhf VERSION=7-jdk VARIANT=openjdk
@@ -33,7 +32,7 @@ env:
     - BASE=alpine ARCH=amd64 VERSION=8-jdk VARIANT=openjdk
 
 install:
-- bash <(curl https://raw.githubusercontent.com/encodeering/docker-ci/master/install.sh) 0.1.7
+- bash <(curl https://raw.githubusercontent.com/encodeering/docker-ci/master/install.sh) 0.1.8
 
 before_script:
 - sudo -E bash ./module.sh "." "./setup.sh"
