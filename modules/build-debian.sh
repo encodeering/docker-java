@@ -15,8 +15,6 @@ docker-pull "$REPOSITORY/buildpack-$ARCH:$PACKTAG" "buildpack-deps:$PACKTAG"
 
 case "$VARIANT" in
     openjdk )
-        docker-patch patch "$PROJECT"
-
         docker-build "$PROJECT/$VERSION"
         ;;
     oracle )

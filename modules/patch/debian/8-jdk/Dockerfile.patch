@@ -1,9 +1,0 @@
-diff --git a/8-jdk/Dockerfile b/8-jdk/Dockerfile
-index 990e829..80e82a3 100644
---- a/8-jdk/Dockerfile
-+++ b/8-jdk/Dockerfile
-@@ -39,2 +39,2 @@ ENV JAVA_HOME /docker-java-home
--ENV JAVA_VERSION 8u131
--ENV JAVA_DEBIAN_VERSION 8u131-b11-1~bpo8+1
-+ENV JAVA_VERSION 8u131
-+ENV JAVA_DEBIAN_VERSION 8u131-b11-1~bpo8+1
