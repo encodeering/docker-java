@@ -17,16 +17,16 @@ env:
     - BASE=debian ARCH=armhf VERSION=7-jdk VARIANT=openjdk
     - BASE=debian ARCH=armhf VERSION=8-jre VARIANT=openjdk
     - BASE=debian ARCH=armhf VERSION=8-jdk VARIANT=openjdk
-    - BASE=debian ARCH=armhf VERSION=8-jdk VARIANT=oracle   VERSIONSHA=fd2881e01be04e52a7389e8458c794b0580997df4d1142eefb707468a9e0cf56
-      DOWNLOAD=http://download.oracle.com/otn-pub/java/jdk/8u161-b12/2f38c3b165be4555a1fa6e98c45e0808/jdk-8u161-linux-arm32-vfp-hflt.tar.gz
+    - BASE=debian ARCH=armhf VERSION=8-jdk VARIANT=oracle   VERSIONSHA=80b7318c54c35889624d573966bb68fbd0ef8b88dfe955debbde3a1e6edd11af
+      DOWNLOAD=http://download.oracle.com/otn-pub/java/jdk/8u171-b11/512cd62ec5174c3487ac17c61aaa89e8/jdk-8u171-linux-arm32-vfp-hflt.tar.gz
       LEGAL=http://www.oracle.com/technetwork/java/javase/terms/license/index.html
 
     - BASE=debian ARCH=amd64 VERSION=7-jre VARIANT=openjdk
     - BASE=debian ARCH=amd64 VERSION=7-jdk VARIANT=openjdk
     - BASE=debian ARCH=amd64 VERSION=8-jre VARIANT=openjdk
     - BASE=debian ARCH=amd64 VERSION=8-jdk VARIANT=openjdk
-    - BASE=debian ARCH=amd64 VERSION=8-jdk VARIANT=oracle   VERSIONSHA=6dbc56a0e3310b69e91bb64db63a485bd7b6a8083f08e48047276380a0e2021e
-      DOWNLOAD=http://download.oracle.com/otn-pub/java/jdk/8u161-b12/2f38c3b165be4555a1fa6e98c45e0808/jdk-8u161-linux-x64.tar.gz
+    - BASE=debian ARCH=amd64 VERSION=8-jdk VARIANT=oracle   VERSIONSHA=b6dd2837efaaec4109b36cfbb94a774db100029f98b0d78be68c27bec0275982
+      DOWNLOAD=http://download.oracle.com/otn-pub/java/jdk/8u171-b11/512cd62ec5174c3487ac17c61aaa89e8/jdk-8u171-linux-x64.tar.gz
       LEGAL=http://www.oracle.com/technetwork/java/javase/terms/license/index.html
     - BASE=alpine ARCH=amd64 VERSION=8-jre VARIANT=openjdk
     - BASE=alpine ARCH=amd64 VERSION=8-jdk VARIANT=openjdk
