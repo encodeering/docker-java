@@ -13,23 +13,15 @@ env:
     - PROJECT="java"
     - REPOSITORY="encodeering"
   matrix:
-    - BASE=debian ARCH=armhf VERSION=7-jre VARIANT=openjdk
-    - BASE=debian ARCH=armhf VERSION=7-jdk VARIANT=openjdk
-    - BASE=debian ARCH=armhf VERSION=8-jre VARIANT=openjdk
-    - BASE=debian ARCH=armhf VERSION=8-jdk VARIANT=openjdk
-    - BASE=debian ARCH=armhf VERSION=8-jdk VARIANT=oracle   VERSIONSHA=80b7318c54c35889624d573966bb68fbd0ef8b88dfe955debbde3a1e6edd11af
-      DOWNLOAD=http://download.oracle.com/otn-pub/java/jdk/8u171-b11/512cd62ec5174c3487ac17c61aaa89e8/jdk-8u171-linux-arm32-vfp-hflt.tar.gz
-      LEGAL=http://www.oracle.com/technetwork/java/javase/terms/license/index.html
+    - BASE=debian ARCH=armhf VERSION=7-jre
+    - BASE=debian ARCH=armhf VERSION=7-jdk
+    - BASE=debian ARCH=armhf VERSION=8-jre
+    - BASE=debian ARCH=armhf VERSION=8-jdk
 
-    - BASE=debian ARCH=amd64 VERSION=7-jre VARIANT=openjdk
-    - BASE=debian ARCH=amd64 VERSION=7-jdk VARIANT=openjdk
-    - BASE=debian ARCH=amd64 VERSION=8-jre VARIANT=openjdk
-    - BASE=debian ARCH=amd64 VERSION=8-jdk VARIANT=openjdk
-    - BASE=debian ARCH=amd64 VERSION=8-jdk VARIANT=oracle   VERSIONSHA=b6dd2837efaaec4109b36cfbb94a774db100029f98b0d78be68c27bec0275982
-      DOWNLOAD=http://download.oracle.com/otn-pub/java/jdk/8u171-b11/512cd62ec5174c3487ac17c61aaa89e8/jdk-8u171-linux-x64.tar.gz
-      LEGAL=http://www.oracle.com/technetwork/java/javase/terms/license/index.html
-    - BASE=alpine ARCH=amd64 VERSION=8-jre VARIANT=openjdk
-    - BASE=alpine ARCH=amd64 VERSION=8-jdk VARIANT=openjdk
+    - BASE=debian ARCH=amd64 VERSION=7-jre
+    - BASE=debian ARCH=amd64 VERSION=7-jdk
+    - BASE=debian ARCH=amd64 VERSION=8-jre
+    - BASE=debian ARCH=amd64 VERSION=8-jdk
 
 install:
 - bash <(curl https://raw.githubusercontent.com/encodeering/docker-ci/master/install.sh) 0.1.8

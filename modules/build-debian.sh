@@ -13,17 +13,6 @@ esac
 
 docker-pull "$REPOSITORY/buildpack-$ARCH:$PACKTAG" "buildpack-deps:$PACKTAG"
 
-case "$VARIANT" in
-    openjdk )
-        docker-build "$PROJECT/$VERSION"
-        ;;
-    oracle )
-        docker-build --build-arg VERSION="$VERSION"       \
-                     --build-arg VERSIONSHA="$VERSIONSHA" \
-                     --build-arg DOWNLOAD="$DOWNLOAD"     \
-                     --build-arg LEGAL="$LEGAL"           \
-                     "java-oracle"
-        ;;
-esac
+docker-build "$PROJECT/${VERSION%%-*}/${VERSION##*-}"
 
-
+docker-verify java -version
