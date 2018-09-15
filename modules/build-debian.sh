@@ -13,6 +13,6 @@ esac
 
 docker-pull "$REPOSITORY/buildpack-$ARCH:$PACKTAG" "buildpack-deps:$PACKTAG"
 
-docker-build "$PROJECT/$VERSION"
+docker-build "$PROJECT/${VERSION%%-*}/${VERSION##*-}"
 
 docker-verify java -version
