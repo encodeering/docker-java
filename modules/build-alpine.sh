@@ -10,4 +10,4 @@ docker-pull "$REPOSITORY/alpine-$ARCH:3.8" "alpine:3.8"
 
 docker-build "$PROJECT/${VERSION%%-*}/${VERSION##*-}/alpine"
 
-docker-verify java -version
+docker-verify java -version 2>&1 | dup | contains "${ALIAS}"
