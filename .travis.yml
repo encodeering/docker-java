@@ -13,13 +13,9 @@ env:
     - PROJECT="java"
     - REPOSITORY="encodeering"
   matrix:
-    - BASE=debian ARCH=armhf VERSION=7-jre ALIAS=1.7.0
-    - BASE=debian ARCH=armhf VERSION=7-jdk ALIAS=1.7.0
     - BASE=debian ARCH=armhf VERSION=8-jre ALIAS=1.8.0
     - BASE=debian ARCH=armhf VERSION=8-jdk ALIAS=1.8.0
 
-    - BASE=debian ARCH=amd64 VERSION=7-jre ALIAS=1.7.0
-    - BASE=debian ARCH=amd64 VERSION=7-jdk ALIAS=1.7.0
     - BASE=debian ARCH=amd64 VERSION=8-jre ALIAS=1.8.0
     - BASE=debian ARCH=amd64 VERSION=8-jdk ALIAS=1.8.0
 
