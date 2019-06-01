@@ -13,6 +13,8 @@ esac
 
 docker-pull "$REPOSITORY/buildpack-$ARCH:$PACKTAG" "buildpack-deps:$PACKTAG"
 
+docker-patch patch "$PROJECT"
+
 docker-build "$PROJECT/${VERSION%%-*}/${VERSION##*-}"
 
 docker-verify java -version 2>&1 | dup | contains "${ALIAS}"

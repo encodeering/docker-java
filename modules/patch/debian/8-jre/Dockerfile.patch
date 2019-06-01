@@ -1,0 +1,7 @@
+diff --git a/8/jre/Dockerfile b/8/jre/Dockerfile
+index 101103b..9ebf10e
+--- a/8/jre/Dockerfile
++++ b/8/jre/Dockerfile
+@@ -43 +43 @@ ENV JAVA_VERSION 8u212
+-ENV JAVA_DEBIAN_VERSION 8u212-b01-1~deb9u1
++ENV JAVA_DEBIAN_VERSION 8u212-b03-2~deb9u1
