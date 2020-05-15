@@ -1,3 +1,3 @@
 SCM_SOURCE=https://github.com/docker-library/openjdk.git
 SCM_TARGET=modules/$PROJECT
-SCM_COMMIT=331cbccfae0c0261d1cc92c85efba9e6c3542eea
+SCM_COMMIT=0a152d425165c851fbfc5b456191c4aeab9fc049

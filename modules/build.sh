@@ -6,8 +6,8 @@ import com.encodeering.ci.config
 import com.encodeering.ci.docker
 
 case "$VERSION" in
-    8-jre) PACKTAG=stretch-curl ;;
-    8-jdk) PACKTAG=stretch-scm  ;;
+    8-jre) PACKTAG=buster-curl ;;
+    8-jdk) PACKTAG=buster-scm  ;;
     *    ) exit 1
 esac
 
